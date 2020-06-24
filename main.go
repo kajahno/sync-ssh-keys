@@ -13,6 +13,7 @@ var (
 
 var (
 	outputPath = kingpin.Flag("output", "Write output to <file>. Default to stdout").Short('o').String()
+	quiet      = kingpin.Flag("quiet", "suppress public keys information").Default("false").Bool()
 	wError     = kingpin.Flag("Werror", "Treat warning as errors. Fatal error if organization, team or user does not exist.").String()
 
 	localPath = kingpin.Flag("local-path", "Path to a local authorized_keys file. It can be useful in case of network failure ;)").String()
@@ -117,5 +118,5 @@ func main() {
 	}
 
 	// prints ssh keys
-	PrintKeys(outputPath, keys)
+	PrintKeys(outputPath, keys, quiet)
 }
